@@ -18,10 +18,14 @@ tmp/
 *.txt
 index.php
 LICENSE
+/build.xml
+/configuration.php
 robots.txt.dist
 
 !.gitignore
 !builder/
 !modules/mod_mycityselector
 !doc_images
-!plugins/system/plg_mycityselector
+!plugins/system/plgmycityselector
+!administrator/components/com_mycityselector
+
