@@ -54,9 +54,7 @@ My City Selector - это расширение для CMS Joomla, позволя
 
 ## Установка
 
-На данный момент установка возможна только по ссылке или из архива [v1.2.8-beta.2](https://github.com/adamasantares/mycityselector/releases/tag/v1.2.8-beta.2).
-
-В ближайшем будущем планируется разместить на [JED](http://extensions.joomla.org/).
+На данный момент установка данной версии возможна только [архива](https://github.com/art-programming-team/mycityselector/tree/v1.8.x/builder/package).
 
 ## Настройка
 
