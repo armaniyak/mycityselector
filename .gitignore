@@ -25,3 +25,8 @@ robots.txt.dist
 !modules/mod_mycityselector
 !doc_images
 !plugins/system/plg_mycityselector
+/configuration.php
+/logo_small.jpg
+/phpunit.phar
+/_installation/
+/jexter/
