@@ -379,6 +379,8 @@ class plgSystemPlg_Mycityselector extends JPlugin
             if (!$this->editMode) { // не делаем замену в режиме редактирования статьи
                 $body = $this->getPageBody();
                 $body = $this->parseCitiesTags($body); // парсим контент
+                // статичная метка
+                $body = str_replace(['{city_name}'], [$this->city], $body);
                 $body = $this->injectJSCallbackFunction($body);
                 $this->setPageBody($body);
             }
@@ -416,7 +418,8 @@ class plgSystemPlg_Mycityselector extends JPlugin
      * Alias for APP->getBody();
      * @return string
      */
-    private function getPageBody(){
+    private function getPageBody()
+    {
         $app = JFactory::getApplication();
         if (method_exists($app, 'getBody')) {
             return $app->getBody();
@@ -429,7 +432,8 @@ class plgSystemPlg_Mycityselector extends JPlugin
     /**
      * Alias for APP->setBody();
      */
-    private function setPageBody($body){
+    private function setPageBody($body)
+    {
         $app = JFactory::getApplication();
         if (method_exists($app, 'setBody')) {
             $app->setBody($body);
