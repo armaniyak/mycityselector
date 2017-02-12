@@ -9,9 +9,9 @@
  */
 
 .mcs-module {
-	position: relative;
-	width: 200px;
-	text-align: left;
+    position: relative;
+    width: 200px;
+    text-align: left;
 }
 .mcs-module .city {
     color: #EC7D00;
@@ -54,17 +54,17 @@
 }
 
 .mcs-dialog {
-	position: fixed;
-	z-index: 9000;
-	top: 20%;
-	left: 50%;
+    position: fixed;
+    z-index: 9000;
+    top: 20%;
+    left: 50%;
     width: 378px;
-	margin-left: -200px;
-	height: auto;
+    margin-left: -200px;
+    height: auto;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-	background-color: #fff;
-	background-color: rgba(255, 255, 255, 0.92);
+    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.92);
     box-shadow: 0px 0px 10px #353535;
     -moz-box-shadow: 0px 0px 10px #353535;
     -webkit-box-shadow: 0px 0px 10px #353535;
@@ -74,12 +74,12 @@
     text-decoration: none;
 }
 .mcs-dialog .close {
-	position: absolute;
-	top: 8px;
-	right: 8px;
-	width: 20px;
-	height: 20px;
-	background: url(close.svg) left top no-repeat;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 20px;
+    height: 20px;
+    background: url(close.svg) left top no-repeat;
     opacity: 0.8;
 }
 .mcs-dialog .close:hover {
@@ -105,34 +105,34 @@
 }
 .mcs-dialog .group a.active {
     color: #CA4D00;
-	border-bottom: none;
+    border-bottom: none;
 }
 .mcs-dialog .group a {
-	border-bottom: 1px dashed #E0975A;
+    border-bottom: 1px dashed #E0975A;
 }
 .mcs-dialog .cities {
     min-height: 140px;
     padding: 10px 0 10px 16px;
 }
 .mcs-dialog .cities.hidden {
-	display: none;
+    display: none;
 }
 .mcs-dialog .city {
     float: left;
-	width: 170px;
-	margin: 0 10px 8px 0;
+    width: 170px;
+    margin: 0 10px 8px 0;
 }
 .mcs-dialog .link {
-	border-bottom: 1px dashed #E0975A;
-	font-size: 14px;
+    border-bottom: 1px dashed #E0975A;
+    font-size: 14px;
 }
 .mcs-dialog .link.active {
     color: #CA4D00;
-	border-bottom: none;
+    border-bottom: none;
 }
 .mcs-dialog  .link:hover, .mcs-dialog  .link:active, .mcs-dialog  .link:focus {
-	color: #CA4D00;
-	background: none;
+    color: #CA4D00;
+    background: none;
 }
 
 .mcs-clear {

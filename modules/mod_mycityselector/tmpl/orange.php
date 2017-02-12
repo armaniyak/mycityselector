@@ -20,19 +20,19 @@ $this->addStyle($myUrl . 'orange.css');
 
 // Drop-down меню
 ?><div class="mcs-module<?= $this->get('moduleclass_sfx') ?>">
-	<?= $this->get('text_before') ?>
-	<a class="city" href="javascript:void(0)" title="Выбрать другой город"><?= $currentCity ?></a>
-	<?= $this->get('text_after') ?>
-	<div class="question" style="display:none;">Не ваш город?&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" class="close">x</a></div>
+    <?= $this->get('text_before') ?>
+    <a class="city" href="javascript:void(0)" title="Выбрать другой город"><?= $currentCity ?></a>
+    <?= $this->get('text_after') ?>
+    <div class="question" style="display:none;">Не ваш город?&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" class="close">x</a></div>
 </div><?php
 
 
 // Диалог выбора города.
 // При создании своей html разметки необходимо сохранить имена классов основных элементов (.mcs-dialog, .close и т.д.).
 ?><div class="mcs-dialog<?= $hasGroups ? ' has-groups' : '' ?>" style="display:none;">
-	<a class="close" href="javascript:void(0)" title=""></a>
-	<div class="title"><?= $this->get('dialog_title') ?></div>
-	<div class="inner"><?php
+    <a class="close" href="javascript:void(0)" title=""></a>
+    <div class="title"><?= $this->get('dialog_title') ?></div>
+    <div class="inner"><?php
         // Для справки:
         // $citiesList - это массив вида: [
         //   '__all__' => [   # все города одним списком
@@ -49,16 +49,16 @@ $this->addStyle($myUrl . 'orange.css');
         // если города раздлены по группам, выводим их в отдельный блок
         if ($hasGroups) {
             ?><div class="groups"><?php
-                foreach ($citiesList as $group => $cities) {
-                    if ($group == '__all__') continue;
-                    ?>
-                    <div class="group">
-                        <a class="<?= isset($cities[$currentCity]) ? ' active' : '' ?>"
-                           href="#" data-group="<?= $this->translit($group) ?>"><?= $group ?></a>
-                    </div>
-                    <?php
-                }
-                ?><div class="mcs-clear"></div>
+            foreach ($citiesList as $group => $cities) {
+                if ($group == '__all__') continue;
+                ?>
+                <div class="group">
+                    <a class="<?= isset($cities[$currentCity]) ? ' active' : '' ?>"
+                       href="#" data-group="<?= $this->translit($group) ?>"><?= $group ?></a>
+                </div>
+                <?php
+            }
+            ?><div class="mcs-clear"></div>
             </div><?php
         }
 
@@ -72,8 +72,8 @@ $this->addStyle($myUrl . 'orange.css');
                     ?>
                     <div class="city">
                         <a class="link<?= ($currentCity==$city) ? ' active' : '' ?>"
-                            id="city-<?= $this->translit($city) ?>" data-city="<?= $city ?>"
-                            href="<?= $data['url'] ?>" title=""><?= $city ?></a>
+                           id="city-<?= $this->translit($city) ?>" data-city="<?= $city ?>"
+                           href="<?= $data['url'] ?>" title=""><?= $city ?></a>
                     </div>
                     <?php
                 }
@@ -83,5 +83,5 @@ $this->addStyle($myUrl . 'orange.css');
             <?php
         }
 
-	?></div>
+        ?></div>
 </div>
