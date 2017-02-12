@@ -498,7 +498,7 @@ class plgSystemPlg_Mycityselector extends JPlugin
                     $cities[0] = str_replace('!', '', $cities[0]);
                     // теперь нужно составить новый список городов, за исключением тех, которые перечислены в теге
                     $newCities = $this->citiesList['__all__']; // копируем список всех городов
-                    foreach ($cities as $cityName => $data) {
+                    foreach ($cities as $key => $cityName) {
                         if (isset($newCities[$cityName])) {
                             unset($newCities[$cityName]); // исключаем города, которые перечислены в теге
                         }
