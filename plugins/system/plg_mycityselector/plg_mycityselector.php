@@ -473,7 +473,7 @@ class plgSystemPlg_Mycityselector extends JPlugin
         if ($cnt > 0) {
             $json = array();
             // в цикле перебираем найденные куски, прячем все в js массив, кроме совпадающего с текущим городом
-            $finded = false;
+            $isFoundAny = false;
             // echo '<pre>'; print_r($res); echo '</pre>';
             foreach ($res[1] as $i => $city) { // цикл по названиям городов из результата regexp
                 // $res[0][$i] - весь найденный блок
@@ -509,7 +509,7 @@ class plgSystemPlg_Mycityselector extends JPlugin
                     $json[$trcity][$index] = $content;
                     // для всех городов в группе, создаем блоки со ссылкой на групповой
                     $class = '';
-                    $findedInGroup = false;
+                    $isFoundAnyInGroup = false;
                     foreach ($cities as $cval) {
                         $cval = trim($cval);
                         if ($cval == '*') {
@@ -524,23 +524,23 @@ class plgSystemPlg_Mycityselector extends JPlugin
                         $json[$trcityG][$indexG] = '{{$cities-group}}=' . $index; // ссылка на групповой блок с общим контентом
                         $class .= ' city-' . $trcityG . '-' . $indexG;
                         if ($cval == $this->city) {
-                            $findedInGroup = true; // этот блок для текущего выбранного города, ставим флаг, чтобы не отображался блок [city *]
+                            $isFoundAnyInGroup = true; // этот блок для текущего выбранного города, ставим флаг, чтобы не отображался блок [city *]
                         }
                     }
                     $html = '<' . $tag . ' class="cityContent' . $class . '">';
-                    if ($findedInGroup == true) {
+                    if ($isFoundAnyInGroup == true) {
                         if (!$isIgnore) {
-                            $finded = true;
+                            $isFoundAny = true;
                             $html .= $content;
                         } else {
-                            $finded = false;
+                            $isFoundAny = false;
                         }
                     } else {
                         if ($isIgnore) {
-                            $finded = true;
+                            $isFoundAny = true;
                             $html .= $content;
                         } else {
-                            $finded = false;
+                            $isFoundAny = false;
                         }
                     }
                     $html .= '</' . $tag . '>';
@@ -561,18 +561,24 @@ class plgSystemPlg_Mycityselector extends JPlugin
                     $class = ' city-' . $trcity . '-' . $index;
                     $html = '<' . $tag . ' class="cityContent' . $class . '">';
                     if ($cval == $this->city) {
+                        // это текущий город
                         if (!$isIgnore) {
-                            $finded = true; // этот блок для текущего выбранного города, ставим флаг, чтобы не отображался блок [city *]
+                            $isFoundAny = true; // этот блок для текущего выбранного города, ставим флаг, чтобы не отображался блок [city *]
                             $html .= $content;
                         } else {
-                            $finded = false;
+                            $isFoundAny = false;
+                        }
+                    } else {
+                        if ($isIgnore) {
+                            $isFoundAny = true;
+                            $html .= $content;
                         }
                     }
                     $html .= '</' . $tag . '>';
                 }
                 $body = str_replace($res[0][$i], $html, $body);
             }
-            if ($finded == false && isset($json['other'])) {
+            if ($isFoundAny == false && isset($json['other'])) {
                 // если город не был найден, то при наличии блока "прочие", подставляем текст обратно в страницу
                 foreach ($json['other'] as $index => $content) {
                     $tag = $this->isHasBlockTag($content) ? 'div' : 'span';
