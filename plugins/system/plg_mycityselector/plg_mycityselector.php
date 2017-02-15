@@ -350,11 +350,11 @@ class plgSystemPlg_Mycityselector extends JPlugin
             && isset($resp['city'])
             && isset($resp['city']['name_ru'])
             && !empty($resp['city']['name_ru'])) {
-                // город успешно определен
-                $city = $resp['city']['name_ru'];
-                if (isset($this->citiesList['__all__'][$city])) {
-                    return $city;
-                }
+            // город успешно определен
+            $city = $resp['city']['name_ru'];
+            if (isset($this->citiesList['__all__'][$city])) {
+                return $city;
+            }
         }
         return $defaultCity;
     }
@@ -490,21 +490,14 @@ class plgSystemPlg_Mycityselector extends JPlugin
                 if (strpos($city, '&#x') !== false) {
                     $city = html_entity_decode($city, ENT_COMPAT, 'UTF-8');
                 }
+                $isIgnore = false;
                 // разделяем по ","
                 $cities = explode(',', $city);
                 // проверяем первый символ первого города, если он равен "!", значит это условие исключения
                 if (mb_substr(trim($cities[0]), 0, 1, 'UTF-8') == '!') {
                     // условие исключения
+                    $isIgnore = true;
                     $cities[0] = str_replace('!', '', $cities[0]);
-                    // теперь нужно составить новый список городов, за исключением тех, которые перечислены в теге
-                    $newCities = $this->citiesList['__all__']; // копируем список всех городов
-                    foreach ($cities as $key => $cityName) {
-                        if (isset($newCities[$cityName])) {
-                            unset($newCities[$cityName]); // исключаем города, которые перечислены в теге
-                        }
-                    }
-                    $cities = array_keys($newCities); // получаем список нужных городов
-                    unset($newCities);
                 }
                 if (count($cities) > 1) {
                     // формируем групповой блок, если городов > 1
@@ -532,12 +525,23 @@ class plgSystemPlg_Mycityselector extends JPlugin
                         $class .= ' city-' . $trcityG . '-' . $indexG;
                         if ($cval == $this->city) {
                             $findedInGroup = true; // этот блок для текущего выбранного города, ставим флаг, чтобы не отображался блок [city *]
-                            $finded = true;
                         }
                     }
                     $html = '<' . $tag . ' class="cityContent' . $class . '">';
                     if ($findedInGroup == true) {
-                        $html .= $content;
+                        if (!$isIgnore) {
+                            $finded = true;
+                            $html .= $content;
+                        } else {
+                            $finded = false;
+                        }
+                    } else {
+                        if ($isIgnore) {
+                            $finded = true;
+                            $html .= $content;
+                        } else {
+                            $finded = false;
+                        }
                     }
                     $html .= '</' . $tag . '>';
                 } else {
@@ -557,8 +561,12 @@ class plgSystemPlg_Mycityselector extends JPlugin
                     $class = ' city-' . $trcity . '-' . $index;
                     $html = '<' . $tag . ' class="cityContent' . $class . '">';
                     if ($cval == $this->city) {
-                        $finded = true; // этот блок для текущего выбранного города, ставим флаг, чтобы не отображался блок [city *]
-                        $html .= $content;
+                        if (!$isIgnore) {
+                            $finded = true; // этот блок для текущего выбранного города, ставим флаг, чтобы не отображался блок [city *]
+                            $html .= $content;
+                        } else {
+                            $finded = false;
+                        }
                     }
                     $html .= '</' . $tag . '>';
                 }
@@ -605,7 +613,7 @@ class plgSystemPlg_Mycityselector extends JPlugin
             && stripos($content, '<pre') === false
             && stripos($content, '<table') === false
             && stripos($content, '<address') === false) {
-                return false;
+            return false;
         }
         return true;
     }
