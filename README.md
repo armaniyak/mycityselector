@@ -4,8 +4,8 @@ My City Selector Joomla Extension
 |       Joomla | 2.5 - 3.x       |
 |--------------|-----------------|
 | Package      | module & plugin |
-| Version      | 1.2.9          |
-| Download     | [v1.2.9](https://github.com/active-programming/mycityselector/raw/v1.8.x/builder/package/mcs-v129-j25j3x-pm.zip)       |
+| Version      | 1.8.0           |
+| Download     | [v1.8.0](https://github.com/active-programming/mycityselector/raw/v1.8.x/builder/package/mcs-v180-j25j3x-pm.zip)       |
 
 ## Информация
 
