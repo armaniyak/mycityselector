@@ -53,5 +53,7 @@
         </languages>
     </administration>
 
-
+    <updateservers>
+        <server type="extension" name="My City Selector Update Server">https://github.com/active-programming/mycityselector/raw/master/mcs_update.xml</server>
+    </updateservers>
 </extension>
